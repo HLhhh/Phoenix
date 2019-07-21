@@ -2,10 +2,12 @@ package bigdecimalutils;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.RoundingMode;
 import java.util.List;
 
 /**
  * bigDimalUtils的处理工具类
+ *
  */
 public class BigDecimalUtils {
     /**
@@ -90,6 +92,29 @@ public class BigDecimalUtils {
              bignum = bignum.divide(bignum, scale, BigDecimal.ROUND_HALF_UP);
         }
         return bignum;
+    }
+
+/*RoundingMode.CEILING：取右边最近的整数
+
+RoundingMode.DOWN：去掉小数部分取整，也就是正数取左边，负数取右边，相当于向原点靠近的方向取整
+
+RoundingMode.FLOOR：取左边最近的正数
+
+RoundingMode.HALF_DOWN:五舍六入，负数先取绝对值再五舍六入再负数
+
+RoundingMode.HALF_UP:四舍五入，负数原理同上
+
+RoundingMode.HALF_EVEN:这个比较绕，整数位若是奇数则四舍五入，若是偶数则五舍六入
+*/
+
+    /**
+     * 四舍五入
+     * @param bigDecimal
+     * @param scale 保留小数点位数
+     * @return
+     */
+    public BigDecimal scalehalfup(BigDecimal bigDecimal,int scale,RoundingMode roundingMode){
+        return bigDecimal.setScale(scale, roundingMode);
     }
 
 }
